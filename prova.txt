@@ -1,0 +1,32 @@
+Requisitos técnicos:
+- Typescript
+- Banco: MongoDB
+- ORM: mongoose
+- transpile: ts-node
+- nodemon para live reload
+- Framework - express
+- Testes: Jest
+
+Livro:
+- Criadores
+- Personagens
+- Quadrinhos
+
+CRUD da Marvel:
+[] - Criar um criador
+[] - Listar todos os criadores
+[] - Listar um criador
+[] - Atualizar um criador
+[] - Remover um criador
+
+[] - Criar um personagem
+[] - Listar todos os personagens
+[] - Listar um personagem
+[] - Atualizar um personagem
+[] - Remover um personagem
+
+[] - Criar um quadrinho
+[] - Listar todos os quadrinhos
+[] - Listar um quadrinhos
+[] - Atualizar um quadrinho
+[] - Remover um quadrinho
