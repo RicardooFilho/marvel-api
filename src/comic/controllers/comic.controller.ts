@@ -1,8 +1,19 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import comicService from "../services/comic.service";
 import {StatusCode} from "../../status/status.enum";
 
 class ComicController {
+
+//Rota para popular com os quadrinhos da saga King in Black
+    async createMarvelAPIComic(req: Request, res: Response) {
+        try {
+            await comicService.createMarvelAPIComic();
+            return res.status(StatusCode.SUCCESS).send();
+        } catch (error) {
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
     async create(req: Request, res: Response) {
         try {
             const newComic = req.body;

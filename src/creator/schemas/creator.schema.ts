@@ -6,7 +6,6 @@ const creatorSchema = new Schema({
     lastName: String,
     suffix: String,
     fullName: String,
-    role: String,
 }, { timestamps: true });
 
 export default model("Creator", creatorSchema);

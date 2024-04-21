@@ -1,8 +1,21 @@
 import { Request, Response } from 'express';
 import creatorService from "../services/creator.service";
 import {StatusCode} from "../../status/status.enum";
+import axios from "axios";
+import {creatorType} from "../types/creator.type";
 
 class CreatorController {
+
+//Rota para popular com os criadores da saga King in Black
+    async createMarvelAPICreator(req: Request, res: Response) {
+        try {
+            await creatorService.createMarvelAPICreator();
+            return res.status(StatusCode.SUCCESS).send();
+        } catch (error) {
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
     async create(req: Request, res: Response) {
         try {
             const newCreator = req.body;

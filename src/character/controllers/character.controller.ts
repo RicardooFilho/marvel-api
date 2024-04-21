@@ -1,8 +1,19 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import {StatusCode} from "../../status/status.enum";
 import characterService from "../service/character.service";
 
 class CharacterController {
+
+//Rota para popular o banco com os personagens da saga King in Black
+    async createMarvelAPICharacter(req: Request, res: Response) {
+        try {
+            await characterService.createMarvelAPICharacter();
+            return res.status(StatusCode.SUCCESS).send();
+        } catch (error) {
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
     async create(req: Request, res: Response) {
         try {
             const newCharacter = req.body;
