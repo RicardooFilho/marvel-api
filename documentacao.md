@@ -183,7 +183,7 @@
         <li>201 - Realizou a criação da nova comic com sucesso</li>
         <li>500 - Erro interno do servidor</li>
     </ul>
-    <h3>PUT - /api/comics:id</h3>
+    <h3>PUT - /api/comics/:id</h3>
     <p>Realiza a atualização de uma comic específica do banco</p>
     <p>Corpo Necessário:</p>
      <pre><code>{
