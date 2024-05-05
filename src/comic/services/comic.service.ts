@@ -1,8 +1,6 @@
 import {comicType} from "../types/comic.type";
 import comicSchema from "../schemas/comic.schema";
 import axios from "axios";
-import {creatorType} from "../../creator/types/creator.type";
-import creatorSchema from "../../creator/schemas/creator.schema";
 
 class ComicService {
 
@@ -42,7 +40,7 @@ class ComicService {
     }
 
     async findAll() {
-        const foundComics= await comicSchema.find();
+        const foundComics = await comicSchema.find();
         return foundComics;
     }
 
@@ -74,6 +72,14 @@ class ComicService {
         } catch (error) {
             throw new Error(`Erro ao remover quadrinho: ${error}`);
         }
+    }
+
+    async count() {
+        return comicSchema.countDocuments();
+    }
+
+    async comicsWithMoreOrEqualsThanFiftyPages() {
+        return comicSchema.find({ pageCount: { $gt: 50 } });
     }
 }
 

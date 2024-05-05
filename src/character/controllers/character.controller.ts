@@ -1,10 +1,10 @@
 import {Request, Response} from 'express';
 import {StatusCode} from "../../status/status.enum";
 import characterService from "../service/character.service";
+import comicService from "../../comic/services/comic.service";
 
 class CharacterController {
 
-//Rota para popular o banco com os personagens da saga King in Black
     async createMarvelAPICharacter(req: Request, res: Response) {
         try {
             await characterService.createMarvelAPICharacter();
@@ -65,6 +65,26 @@ class CharacterController {
             return res.status(StatusCode.NO_CONTENT).send();
         } catch (error) {
             console.error(`Erro ao remover personagem: ${error}`);
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
+    async count(req: Request, res: Response) {
+        try {
+            const characters = await characterService.count();
+            return res.status(StatusCode.SUCCESS).json(`Número de Personagens que participaram da Saga King in Black: ${characters}`);
+        } catch (error) {
+            console.error(`Erro ao contar os personagens: ${error}`);
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
+    async findcharactersWithDescriptionGTFifty(req: Request, res: Response) {
+        try {
+            const characters = await characterService.charactersWithDescriptionGTFifty();
+            return res.status(StatusCode.SUCCESS).json(characters);
+        } catch (error) {
+            console.error(`Erro ao buscar os personagens com descrição maior que 50: ${error}`);
             return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
         }
     }

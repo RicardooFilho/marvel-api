@@ -1,10 +1,10 @@
 import {Request, Response} from 'express';
 import comicService from "../services/comic.service";
 import {StatusCode} from "../../status/status.enum";
+import creatorService from "../../creator/services/creator.service";
 
 class ComicController {
 
-//Rota para popular com os quadrinhos da saga King in Black
     async createMarvelAPIComic(req: Request, res: Response) {
         try {
             await comicService.createMarvelAPIComic();
@@ -66,6 +66,26 @@ class ComicController {
         } catch (error) {
             console.error(`Erro ao remover quadrinho: ${error}`);
             return res.status(StatusCode.INTERNAL_SERVER_ERROR).send()
+        }
+    }
+
+    async count(req: Request, res: Response) {
+        try {
+            const comics = await comicService.count();
+            return res.status(StatusCode.SUCCESS).json(`Número de Quadrinhos da Saga King in Black: ${comics}`);
+        } catch (error) {
+            console.error(`Erro ao contar os quadrinhos: ${error}`);
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
+    async findComicsWithPagesGTEFifty(req: Request, res: Response) {
+        try {
+            const comics = await comicService.comicsWithMoreOrEqualsThanFiftyPages();
+            return res.status(StatusCode.SUCCESS).json(comics);
+        } catch (error) {
+            console.error(`Erro ao buscar os quadrinhos com 50 páginas ou mais: ${error}`);
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
         }
     }
 }

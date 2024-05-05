@@ -65,6 +65,10 @@ class CreatorService {
             throw new Error(`Erro ao remover criador: ${error}`);
         }
     }
+
+    async count() {
+        return creatorSchema.countDocuments();
+    }
 }
 
 export default new CreatorService();

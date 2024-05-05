@@ -1,12 +1,9 @@
-import { Request, Response } from 'express';
+import {Request, Response} from 'express';
 import creatorService from "../services/creator.service";
 import {StatusCode} from "../../status/status.enum";
-import axios from "axios";
-import {creatorType} from "../types/creator.type";
 
 class CreatorController {
 
-//Rota para popular com os criadores da saga King in Black
     async createMarvelAPICreator(req: Request, res: Response) {
         try {
             await creatorService.createMarvelAPICreator();
@@ -67,6 +64,16 @@ class CreatorController {
             return res.status(StatusCode.NO_CONTENT).send();
         } catch (error) {
             console.error(`Erro ao remover criador: ${error}`);
+            return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
+        }
+    }
+
+    async count(req: Request, res: Response) {
+        try {
+            const creators = await creatorService.count();
+            return res.status(StatusCode.SUCCESS).json(`Número de Criadores que participaram da criação da Saga King in Black: ${creators}`);
+        } catch (error) {
+            console.error(`Erro ao contar os criadores: ${error}`);
             return res.status(StatusCode.INTERNAL_SERVER_ERROR).send();
         }
     }

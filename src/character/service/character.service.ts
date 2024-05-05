@@ -57,6 +57,14 @@ class CharacterService {
             throw new Error(`Erro ao remover personagem: ${error}`);
         }
     }
+
+    async count() {
+        return characterSchema.countDocuments();
+    }
+
+    async charactersWithDescriptionGTFifty() {
+        return characterSchema.find({ $expr: { $gt: [{ $strLenCP: "$description" }, 50] }});
+    }
 }
 
 export default new CharacterService();

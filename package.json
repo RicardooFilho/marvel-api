@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "nodemon src/server.ts",
-    "test": "jest"
+    "test": "jest",
+    "cannon": "npx autocannon -c 500 -d 20 --workers 10 --renderStatusCode --latency --warmup [ -c 1 -d 2 ] http://localhost:3000/api/comics"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

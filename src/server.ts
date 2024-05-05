@@ -1,3 +1,4 @@
+import { clearScreenDown } from "readline";
 import app from "./app";
 
 function main() {
